@@ -1,5 +1,8 @@
 import Eye from "../../assets/icons/Eye.png";
 import { useState } from "react";
+import { axiosCall, accessTokenIsValid, refreshTokenLS } from "../../conf/axios.js"
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../conf/common.js";
+
 function Login(props) {
     const [showPassword, setShowPassword] = useState(false);
     const [username, setUsername] = useState('');
@@ -7,6 +10,13 @@ function Login(props) {
     // Create the submit method.
     const submit = async e => {
         e.preventDefault();
+        const user = {
+            "username": username,
+            "password": password
+        }
+        const data = await axiosCall('api/tokrn/create/', user, null, "POST")
+        localStorage.setItem(ACCESS_TOKEN_KEY, data.access)
+        localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh)
     };
 
     function fiireSetUsername(e) { setUsername(e.target.value) }
@@ -16,18 +26,18 @@ function Login(props) {
         <div>
             <form className="form-group" onSubmit={submit}>
                 <div>
-                    <input type="text" id="name-input" placeholder="Никнейм или электронная почта" />
                     <input
                         type="text"
                         id="login-name-input"
+                        onChange={fiireSetUsername}
                         placeholder="Никнейм или электронная почта"
                     />
                 </div>
                 <div>
-                    <input type={showPassword ? "text" : "password"} id="pass-input" placeholder="Пароль" />
                     <input
                         type={showPassword ? "text" : "password"}
                         id="login-pass-input"
+                        onChange={fiireSetPassword}
                         className="pass-input"
                         placeholder="Пароль"
                     />
