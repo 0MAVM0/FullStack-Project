@@ -8,9 +8,9 @@ const initialState = {
 
 function globalReducer(state, action) {
     switch (action.type) {
-        case "LOGIN":
+        case "Auth":
             return { ...state, isAuth: true }
-        case "LOGOUT":
+        case "NoAuth":
             return { ...state, isAuth: false }
         default:
             throw new Error("Unexpected action")
