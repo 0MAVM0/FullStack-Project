@@ -1,12 +1,12 @@
-import { Outlet, Link } from "react-router-dom";
-import styles from "./style.scss";
-import emailVector from '../../assets/icons/email-vector.png';
-import phoneVector from '../../assets/icons/phone-vector.png';
-import bottomVector from '../../assets/icons/bottom-vector.png';
-import profileVector from '../../assets/icons/profile-vector.png';
-import wishlistVector from '../../assets/icons/wishlist-vector.png';
-import cardVector from '../../assets/icons/card-vector.png';
-import searchVector from '../../assets/icons/search-vector.png';
+import { Outlet, Link } from 'react-router-dom'
+import styles from './style.scss'
+import emailVector from '../../assets/icons/email-vector.png'
+import phoneVector from '../../assets/icons/phone-vector.png'
+import bottomVector from '../../assets/icons/bottom-vector.png'
+import profileVector from '../../assets/icons/profile-vector.png'
+import wishlistVector from '../../assets/icons/wishlist-vector.png'
+import cardVector from '../../assets/icons/card-vector.png'
+import searchVector from '../../assets/icons/search-vector.png'
 
 
 export default function Navigation() {
@@ -16,42 +16,42 @@ export default function Navigation() {
                 <div className="upper-nav">
                     <div className="left-nav">
                         <a href="mailto:ediconpts9@gmail.com">
-                            <img src={emailVector} width={15} height={15} alt="" />
+                            <img src={emailVector} width="15" height="15" alt="" />
                             ediconpts9@gmail.com
                         </a>
                         <span>
-                            <img src={phoneVector} width={15} height={15} alt="" />
-                            (+998) (98)-260-87-88
+                            <img src={phoneVector} width="15" height="15" alt="" />
+                            (+998) (98) 260-87-88
                         </span>
                     </div>
                     <div className="right-nav">
-                        <span className="nav-link">
+                        <span className='nav-link'>
                             <Link to={"/#"}>
                                 English
-                                <img src={bottomVector} width={10} height={5} alt="" />
+                                <img src={bottomVector} alt="Vector" width={10} height={5} />
                             </Link>
                         </span>
-                        <span className="nav-link">
+                        <span className='nav-link'>
                             <Link to={"/#"}>
                                 USD
-                                <img src={bottomVector} width={10} height={5} alt="" />
+                                <img src={bottomVector} alt="Vector" width={10} height={5} />
                             </Link>
                         </span>
-                        <span className="nav-link">
+                        <span className='nav-link'>
                             <Link to={"/#"}>
                                 Login
-                                <img src={profileVector} width={15} height={15} alt="" />
+                                <img src={profileVector} alt="Vector" width={15} height={15} />
                             </Link>
                         </span>
-                        <span className="nav-link">
+                        <span className='nav-link'>
                             <Link to={"/#"}>
                                 Wishlist
-                                <img src={wishlistVector} width={15} height={15} alt="" />
+                                <img src={wishlistVector} alt="Vector" width={15} height={15} />
                             </Link>
                         </span>
-                        <span className="nav-link">
+                        <span className='nav-link'>
                             <Link to={"/#"}>
-                                <img src={cardVector} width={20} height={20} alt="" />
+                                <img src={cardVector} alt="Vector" width={20} height={20} />
                             </Link>
                         </span>
                     </div>
@@ -59,25 +59,28 @@ export default function Navigation() {
                 <div className="main-nav">
                     <div className="main-nav-wrapper">
                         <h3>Hekto</h3>
-                        <div className="main-nav-liks">
-                            <span className="nav-link">
+                        <div className="main-nav-links">
+                            <span className='nav-link'>
                                 <Link to={"/#"}>
                                     Pages
                                 </Link>
                             </span>
-                            <span className="nav-link">
+                            <span className='nav-link'>
                                 <Link to={"/#"}>
                                     Products
                                 </Link>
-                            </span><span className="nav-link">
+                            </span>
+                            <span className='nav-link'>
                                 <Link to={"/#"}>
                                     Blog
                                 </Link>
-                            </span><span className="nav-link">
+                            </span>
+                            <span className='nav-link'>
                                 <Link to={"/#"}>
                                     Shop
                                 </Link>
-                            </span><span className="nav-link">
+                            </span>
+                            <span className='nav-link'>
                                 <Link to={"/#"}>
                                     Contact
                                 </Link>
@@ -86,7 +89,7 @@ export default function Navigation() {
                         <div className="main-nav-searchbar">
                             <input type="search" />
                             <button>
-                                <img src={searchVector} width={25} height={25} alt="Search" />
+                                <img src={searchVector} alt="Search" width={25} height={25} />
                             </button>
                         </div>
                     </div>
