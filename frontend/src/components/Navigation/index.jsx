@@ -1,12 +1,12 @@
-import { Outlet, Link } from 'react-router-dom'
-import styles from './style.scss'
-import emailVector from '../../assets/icons/email-vector.png'
-import phoneVector from '../../assets/icons/phone-vector.png'
-import bottomVector from '../../assets/icons/bottom-vector.png'
-import profileVector from '../../assets/icons/profile-vector.png'
-import wishlistVector from '../../assets/icons/wishlist-vector.png'
-import cardVector from '../../assets/icons/card-vector.png'
-import searchVector from '../../assets/icons/search-vector.png'
+import { Outlet, Link } from 'react-router-dom';
+import styles from './style.scss';
+import emailVector from '../../assets/icons/email-vector.png';
+import phoneVector from '../../assets/icons/phone-vector.png';
+import bottomVector from '../../assets/icons/bottom-vector.png';
+import profileVector from '../../assets/icons/profile-vector.png';
+import wishlistVector from '../../assets/icons/wishlist-vector.png';
+import cardVector from '../../assets/icons/card-vector.png';
+import searchVector from '../../assets/icons/search-vector.png';
 
 
 export default function Navigation() {
