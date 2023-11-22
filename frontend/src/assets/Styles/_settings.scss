@@ -3,3 +3,27 @@ $danger: #fb2e86;
 $light-violet: #f1f0ff;
 $dark-blue: #151875;
 $light: #fff;
+
+%btn {
+    display: inline-block;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        transform: scale(0.9);
+        text-decoration: none;
+        color: snow;
+    }
+    &:active {
+        transform: scale(0.6);
+    }
+}
