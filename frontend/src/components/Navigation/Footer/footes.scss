@@ -1,0 +1,58 @@
+@use "../../../assets/Styles/resets";
+@import "../../../assets/Styles/_settings";
+
+.footer-wrapper {
+    background-color: $light-violet;
+    padding: 100px 0 100px 150px;
+
+    .upper-footer {
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr 2fr;
+
+        h2, h3 {
+            font-family: "Poppins", sans-serif;
+        }
+
+        h3 {
+            font-size: small;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            a {
+                text-decoration: none;
+                color: gray;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding-left: 100px;
+            color: gray;
+
+            .details {
+                display: flex;
+                flex-direction: row;
+
+                input {
+                    width: 50%;
+                    height: 40px;
+                    border: none;
+                    background-color: snow;
+
+                    &::placeholder {
+                        color: gray;
+                    }
+                }
+                button {
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+}

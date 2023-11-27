@@ -1,9 +1,10 @@
 @use "../../assets/Styles/_resets";
 @import "../../assets/Styles/_settings";
 
-#carouser-wrapper-id {
+#carousel-wrapper-id {
     position: relative;
     z-index: 0;
+
     .trends-info {
         width: 30%;
         display: flex;
@@ -22,9 +23,8 @@
         p {
             color: $danger;
         }
-
-        .text-muted {
-            color: $light-violet;
+        .muted {
+            color: lightgray;
         }
     }
 
@@ -34,10 +34,10 @@
     }
 
     .dot {
-        background-color: red;
+        background-color: $danger;
         width: 10px;
         height: 10px;
-        border-radius: 0px;
+        border-radius: 0;
         transform: rotate(45deg);
     }
 }
