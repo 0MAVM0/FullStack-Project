@@ -14,6 +14,14 @@ function Login(props) {
     // Create the submit method.
     const submit = async e => {
         e.preventDefault();
+
+        if (username.length === 0 || password.length === 0) {
+            toast.warn("All fields are required", {toastId: "2"})
+            return
+        } else if (error.usernameErr || error.passwordErr) {
+            toast.warn("Please fix the errors.", {toastId: "3"})
+        }
+
         const user = {
             'username': username,
             'password': password
@@ -34,7 +42,7 @@ function Login(props) {
 
         if (val.length !== 0) {
             if (!PATTERN.test(val)) {
-                setError({ ...error, usernameErr: 'Никнейм может содержать только латинский буквы и цыфры' })
+                setError({ ...error, usernameErr: 'Никнейм может содержать только латинский буквы и цифры' })
             } else {
                 setError({ ...error, usernameErr: '' })
             }
@@ -49,7 +57,7 @@ function Login(props) {
 
         if (val.length !== 0) {
             if (!PATTERN.test(val)) {
-                setError({ ...error, passwordErr: 'Пароль может содержать только латинский буквы и цыфры' })
+                setError({ ...error, passwordErr: 'Пароль может содержать только латинский буквы и цифры' })
             } else {
                 setError({ ...error, passwordErr: '' })
             }
