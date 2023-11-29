@@ -53,9 +53,9 @@ CORS_ALLOW_HEADERS = [
     "user-agent",   "x-csrftoken",   "x-requested-with",
 ]
 
-# LOGIN_REDIRECT_URL = 'home_page'
-# LOGIN_URL = 'login'
-# LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home_page'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]

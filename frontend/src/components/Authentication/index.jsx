@@ -1,7 +1,7 @@
 import Login from './Login';
 import Register from './Register';
 import { useState } from 'react';
-import styles from './styles/index.css'
+import styles from './styles/index.scss'
 import star from '../../assets/icons/eiffel.png';
 import Apple from '../../assets/icons/Apple.png';
 import Google from '../../assets/icons/Google.png';
