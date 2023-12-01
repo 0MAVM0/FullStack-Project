@@ -16,10 +16,10 @@ function Login(props) {
         e.preventDefault();
 
         if (username.length === 0 || password.length === 0) {
-            toast.warn("All fields are required", {toastId: "2"})
+            toast.warn("All fields are required", {toastId: 2})
             return
         } else if (error.usernameErr || error.passwordErr) {
-            toast.warn("Please fix the errors.", {toastId: "3"})
+            toast.warn("Please fix the errors.", {toastId: 3})
         }
 
         const user = {
@@ -29,13 +29,13 @@ function Login(props) {
         const data = await axiosCall('api/token/create/', user, null, "POST")
         console.log(data)
         if (data.response?.status) {
-            toast.error("Incorrect credentials", { toastId: '1' })
+            toast.error("Incorrect credentials", { toastId: 1 })
         }
         localStorage.clear()
         localStorage.setItem(ACCESS_TOKEN_KEY, data.access)
         localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh)
 
-        toast.success("Successfully logged in", {toastId: '4'})
+        toast.success("Successfully logged in", {toastId: 4})
         props.navigate('/')
     };
 

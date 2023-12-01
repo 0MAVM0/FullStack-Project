@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const ACCESS_TOKEN_KEY = 'access_token';
 const REFRESH_TOKEN_KEY = 'refresh_token';
 
@@ -6,8 +8,13 @@ function isLoggedIn() {
     return token !== null;
 }
 
+function logoutEntirely() {
+    toast.success("Logget out successfully", { toastId: 999 })
+    localStorage.clear();
+}
 
 export {
+    logoutEntirely,
     isLoggedIn,
     ACCESS_TOKEN_KEY,
     REFRESH_TOKEN_KEY
