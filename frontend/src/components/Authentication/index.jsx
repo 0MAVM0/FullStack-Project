@@ -1,13 +1,25 @@
 import Login from './Login';
 import Register from './Register';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles/index.scss'
 import star from '../../assets/icons/eiffel.png';
 import Apple from '../../assets/icons/Apple.png';
 import Google from '../../assets/icons/Google.png';
 import Facebook from '../../assets/icons/Facebook.png';
 import Steam from '../../assets/icons/Steam.png';
+
+import { isLoggedIn } from '../../conf/common';
+import { useNavigate } from 'react-router-dom';
+
 function Authentication(props) {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isLoggedIn()) {
+            navigate('/')
+        }
+    })
+
     let [registered, setRegistered] = useState(true);
     let registerBB = { "boxShadow": "inset calc(((577px / 100) * 70) / 2) 0 #FAC704" }
     let loginBB = { "boxShadow": "inset calc(((-577px / 100) * 70) / 2) 0 #FAC704" }
@@ -22,7 +34,7 @@ function Authentication(props) {
                     <span className='border-bottom' style={registered ? registerBB : loginBB}></span>
                 </div>
                 <div className={registered ? 'visible' : 'invisible'}>
-                    <Login />
+                    <Login navigate={navigate} />
                 </div>
                 <div className={registered ? 'invisible' : 'visible'}>
                     <Register />
