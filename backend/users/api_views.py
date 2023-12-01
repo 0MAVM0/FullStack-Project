@@ -10,6 +10,7 @@ from rest_framework.authtoken.models import Token
 @api_view(['POST'])
 def register(request):
     username = request.data.get('username')
+    email = request.data.get('email')
     password = request.data.get('password')
     password2 = request.data.get('password2')
     if password != password2:
@@ -18,9 +19,11 @@ def register(request):
         return Response({'error': 'Please provide both username and password'}, status=400)
     if User.objects.filter(username=username).exists():
         return Response({'error': 'Username already taken'}, status=400)
-    user = User.objects.create_user(username=username, password=password)
+    if not email:
+        return Response({'error': 'Please provide email'}, status=400)
+    user = User.objects.create_user(username=username, email=email, password=password)
     Token.objects.create(user=user)
-    return Response({'token': user.auth_token.key}, status=201)
+    return Response({'success': True}, status=201)
 
 @api_view(['POST'])
 def logout(request):
