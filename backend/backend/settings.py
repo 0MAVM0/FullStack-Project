@@ -28,9 +28,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Applications
     'furniture',
+    'users',
+
+    # Libraries
     'rest_framework',
     'corsheaders',
+    'rest_framework.authtoken',
     # 'rest_framework_simplejwt',
 ]
 
