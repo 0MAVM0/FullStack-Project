@@ -5,6 +5,7 @@ from django.urls import path, include
 #     TokenObtainPairView,
 #     TokenRefreshView,
 #     TokenVerifyView
+#     TokenBlacklistView
 # )
 
 urlpatterns = [
@@ -18,4 +19,6 @@ urlpatterns = [
     #                                             name='token_refresh'),
     # path('api/token/verify/', TokenVerifyView.as_view(), 
     #                                             name='token_verify'),
+    # path('api/token/blacklist/', TokenBlacklistView.as_view(),
+    #                                             name='token_blacklist'),
 ]
