@@ -1,5 +1,6 @@
 import Eye from "../../assets/icons/Eye.png";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 
 function Register(props) {
@@ -46,6 +47,18 @@ function Register(props) {
         inputName === "password"  ?  setPassword(val) : setPassword2(val) 
     } 
    
+
+    function hangleSubmit(e) {
+        e.preventDefault()
+        if (password !== password2) {
+            setError({ ...error, password2Err: "Пароли не совпадают" })
+            return;
+        }
+        if (error.usernameErr || error.passwordErr || error.password2Err || error.emailErr){
+            toast.error("Пожалуйста заполните все поля корректно", { toastId: 5 })
+            return;
+        }
+    }
 
     return (
         <div>
