@@ -1,117 +1,107 @@
 import Eye from "../../assets/icons/Eye.png";
 import { useState } from "react";
+import { axiosCall, accessTokenIsValid, refreshTokenLS } from '../../conf/axios.js'
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../conf/common.js";
+import { toast } from 'react-toastify'
 
+function Login(props) {
+    const [showPassword, setShowPassword] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState({})
 
-function Register(props) {
-    let [showPassword, setShowPassword] = useState(false)
-
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [password2, setPassword2] = useState('')
-    const [email, setEmail] = useState('')
-    const [errors, setError] = useState({})
+    // Create the submit method.
+    const submit = async e => {
+        e.preventDefault();
+        if (username.length === 0   ||   password.length === 0) {
+            toast.warn("All fields are required.", {toastId: 2})
+            return
+        } else if (error.usernameErr || error.passwordErr) {
+            toast.warn("Please fix the errors.", {toastId: 3})
+            return
+        }
+        const user = {
+            'username': username,
+            'password': password
+        }
+        const data = await axiosCall('api/token/create/', user, null, "POST")
+        if (data.response?.status === 401) {
+            toast.error("Incorrect credentials", {toastId: 1})
+        } else {
+            localStorage.clear()
+            localStorage.setItem(ACCESS_TOKEN_KEY, data.access)
+            localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh)
+            toast.success("Successfully logged in", {toastId: 4})
+            props.navigate('/')
+        }
+    };
 
     const PATTERN = /^[a-zA-Z0-9]+$/;
-
     function fireSetUsername(e) {
         const val = e.target.value
         if (val.length !== 0) {
             if (!PATTERN.test(val)) {
-                setError({ ...errors, usernameErr: 'Никнейм может содержать только латинские буквы и цифры' })
+                setError({ ...error, usernameErr: 'Никнейм может содержать только латинские буквы и цифры' })
             } else {
-                setError({ ...errors, usernameErr: '' })
+                setError({ ...error, usernameErr: '' })
             }
         } else {
-            setError({ ...errors, usernameErr: '' })
+            setError({ ...error, usernameErr: '' })
         }
         setUsername(val) 
     } 
     function fireSetPassword(e) {
         const val = e.target.value
-        const inputName = e.target.name
-
-     
-        let errName = inputName === "password"  ?  'passwordErr' : 'password2Err'
 
         if (val.length !== 0) {
             if (!PATTERN.test(val)) {
-                setError({ ...errors, [errName]: 'Пароль может содержать только латинские буквы и цифры' })
+                setError({ ...error, passwordErr: 'Пароль может содержать только латинские буквы и цифры' })
             } else {
-                setError({ ...errors, [errName]: '' })
+                setError({ ...error, passwordErr: '' })
             }
         } else {
-            setError({ ...errors, [errName]: '' })
+            setError({ ...error, passwordErr: '' })
         }
 
-        inputName === "password"  ?  setPassword(val) : setPassword2(val) 
+        setPassword(val) 
     } 
-    function fireSetEmail(e) {
-        e.preventDefault()
-        // const emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
-        const val = e.target.value
-        // if (val.length !== 0) {
-        //     if (!emailPattern.test(val)) {
-        //         setError({ ...errors, emailErr: 'Некорректный email' })
-        //     } else {
-        //         setError({ ...errors, emailErr: '' })
-        //     }
-        // } else {
-        //     setError({ ...errors, emailErr: '' })
-        // }
-        setEmail(val)
-    }
 
-
+    
     return (
         <div>
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={submit}>
                 <div>
-                    <input 
-                        type="text" id="register-name-input" 
-                        placeholder="Введите никнейм" 
+                    <input
+                        type="text"
+                        id="login-name-input"
                         onChange={fireSetUsername}
+                        placeholder="Никнейм или электронная почта"
                     />
                     <p className="error">
-                        {errors.usernameErr}
-                    </p>
-
-                    <input type="email" id="register-email-input" placeholder="Электронная почта" 
-                        onChange={fireSetEmail}
-                    />
-                    <p className="error">
-                        {errors.emailErr}
+                        {error.usernameErr}
                     </p>
                 </div>
                 <div>
-                    <input 
-                        id="register-pass-input" 
-                        type={showPassword ? "text" : "password"} 
-                        className="pass-input" 
-                        placeholder="Придумайте пароль" 
-                        name="password"
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        id="login-pass-input"
                         onChange={fireSetPassword}
+                        className="pass-input"
+                        placeholder="Пароль"
                     />
                     <img src={Eye} onClick={() => { setShowPassword(!showPassword) }} alt="" />
                     <p className="error">
-                        {errors.passwordErr}
+                        {error.passwordErr}
                     </p>
                 </div>
-                <div>
-                    <input 
-                        id="pass2-input" 
-                        type="password" 
-                        placeholder="Повторите пароль" 
-                        name="password2"
-                        onChange={fireSetPassword}
-                    />
-                    <p className="error">
-                        {errors.password2Err}
-                    </p>
-                </div>
-                <button className='войти'>Создать</button>
+                <p className='forget-password'>
+                    <span>Забыли пароль?</span>
+                    <a className='Recover' href='#'>Восстановить</a>
+                </p>
+                <button className='войти'>Войти</button>
             </form>
         </div>
     );
 }
 
-export default Register;
+export default Login;

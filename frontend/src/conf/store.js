@@ -10,7 +10,7 @@ function globalReducer(state, action) {
     switch (action.type) {
         case "Auth":
             return { ...state, isAuth: true }
-        case "NoAuth":
+        case "NotAuth":
             return { ...state, isAuth: false }
         default:
             throw new Error("Unexpected action")

@@ -1,4 +1,4 @@
-@use "../../../assets/Styles/resets";
+@use "../../../assets/Styles/_resets";
 @import "../../../assets/Styles/_settings";
 
 .footer-wrapper {
@@ -7,11 +7,8 @@
 
     .upper-footer {
         display: grid;
-        grid-template-columns: 3fr 1fr 1fr 2fr;
-
-        h2, h3 {
-            font-family: "Poppins", sans-serif;
-        }
+        grid-template-columns: 3fr 1fr 1fr 3fr;
+        gap: 50px;
 
         h3 {
             font-size: 1em;
@@ -35,6 +32,10 @@
             padding-left: 100px;
             color: gray;
 
+            h2 {
+                color: black;
+            }
+
             .details {
                 display: flex;
                 flex-direction: row;
@@ -50,9 +51,48 @@
                     }
                 }
                 button {
-                    border-radius: 10px;
+                    border-radius: 5px;
+                    position: relative;
+                    right: 10px;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .footer-wrapper {
+        padding: 100px 0 100px 50px;
+
+        .upper-footer {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 50px;
+
+            .contact-info {
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .footer-wrapper {
+        padding: 100px 0 100px 50px;
+
+        .upper-footer {
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-wrapper {
+        padding: 100px 0 100px 20px;
+
+        .upper-footer {
+            grid-template-columns: 1fr;
+            gap: 50px;
         }
     }
 }

@@ -1,17 +1,17 @@
 import Carousel from '../Carousel'
 
-function  Home() {
+
+function Home() {
     return (
         <main>
-            <Carousel
-                dynamicHeight={true}
+            <Carousel 
+                dynamicHeight={false}
                 width="100%"
-                imgHeight="600px"
                 autoPlay={true}
+                imgHeight="600px"
             />
-
         </main>
-    )
+    );
 }
 
-export default Home
+export default Home;

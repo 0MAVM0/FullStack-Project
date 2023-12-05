@@ -1,12 +1,12 @@
-import './style.scss';
+import './style.scss'
+import { logoutEntirely } from '../../conf/common.js'
 import { useNavigate } from 'react-router-dom';
-import { logoutEntirely } from '../../conf/common';
 
 function Profile() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     function logout() {
-        navigate('/auth');
-        logoutEntirely();
+        navigate('/auth')
+        logoutEntirely()
     }
 
     return (
@@ -15,9 +15,11 @@ function Profile() {
 
             <hr />
 
-            <button className='danger-btn' onClick={logout}>Log out</button>
+            <button className='danger-btn' onClick={logout}>
+                Logout
+            </button>
         </div>
-    )
+    );
 }
 
-export default Profile
+export default Profile;

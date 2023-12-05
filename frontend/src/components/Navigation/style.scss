@@ -8,13 +8,16 @@
         display: flex;
         justify-content: space-between;
 
-        .left-nav > *,
-        .right-nav > *,
+        .upper-left-nav > *,
+        .upper-right-nav > *,
         .nav-link {
             display: inline-block;
             padding: 6px 12px;
         }
-        .left-nav img {
+        .nav-link:hover {
+            background-color: rgb(0, 0, 0, 0.2);
+        }
+        .upper-left-nav img {
             margin: 0 15px;
         }
         a,
@@ -22,30 +25,30 @@
             text-decoration: none;
             color: $light;
         }
-        .right-nav {
+        .upper-right-nav {
             img {
                 margin-left: 3px;
             }
         }
     }
-    .main-nav {
+    .bottom-nav {
         padding: 20px 0 10px 0;
 
-        .main-nav-wrapper {
+        .bottom-nav-wrapper {
             display: flex;
             justify-content: space-evenly;
 
             h3 {
                 a {
-                    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
                     text-decoration: none;
+                    font-size: 1.3em;
                     color: black;
                     display: inline-block;
                     padding: 20px 0;
                 }
             }
 
-            .main-nav-links {
+            .bottom-nav-links {
                 text-align: left;
 
                 a {
@@ -94,6 +97,48 @@
                     position: relative;
                     right: 3px;
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: 1080px) {
+    .main-navbar {
+        .bottom-nav,
+        .upper-nav {
+            padding: 20px 50px;
+            flex-direction: column;
+            text-align: center;
+            font-size: 0.75em;
+
+            div {
+                a {
+                    display: inline-block;
+                    padding: 10px 20px;
+                }
+            }
+            .bottom-nav-wrapper {
+                input {
+                    border: 1px solid gray;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 670px) {
+    .main-navbar {
+        .upper-nav {
+            .upper-left-nav img {
+                margin: 10px;
+            }
+        }
+
+        .bottom-nav {
+            padding: 5px;
+
+            .bottom-nav-wrapper {
+                flex-direction: column;
             }
         }
     }
