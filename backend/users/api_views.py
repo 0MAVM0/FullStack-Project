@@ -1,9 +1,7 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
-# from rest_framework_simplejwt.tokens import RefreshToken
 
 
 
@@ -21,6 +19,6 @@ def register(request):
         return Response({'error': 'Username already taken'}, status=400)
     if not email:
         return Response({'error': 'Please provide email'}, status=400)
-    user = User.objects.create_user(username=username, email=email, password=password)
+    user = User.objects.create_user(username=username, password=password, email=email)
     Token.objects.create(user=user)
     return Response({'success': True}, status=201)

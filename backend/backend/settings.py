@@ -59,9 +59,9 @@ CORS_ALLOW_HEADERS = [
     "user-agent",   "x-csrftoken",   "x-requested-with",
 ]
 
-LOGIN_REDIRECT_URL = 'home_page'
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+# LOGIN_REDIRECT_URL = 'home_page'
+# LOGIN_URL = 'login'
+# LOGOUT_URL = 'logout'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
@@ -145,34 +145,26 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         # Allows us to use token authentication throughout the project
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#         # 'rest_framework.authentication.TokenAuthentication',
-#     ],
-#     'DEFAULT_THROTTLE_CLASSES': [
-#         'rest_framework.throttling.AnonRateThrottle',  # for anonymous users
-#         'rest_framework.throttling.UserRateThrottle',  # for authenticated users
-#     ],
-#     'DEFAULT_THROTTLE_RATES': {
-#         'anon': '10/minute',  # 10 requests per minute
-#         'user': '20/minute',  # 20 requests per minute
-#     },
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#     'PAGE_SIZE': 2,
-# }
-# if DEBUG:
-#     REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] += [
-#         'rest_framework.authentication.SessionAuthentication',
-#     ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # Allows us to use token authentication throughout the project
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+}
+if DEBUG:
+    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] += [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
 
 
-# DJOSER = {
-#     "USER_ID_FIELD": "username",  # We use username for login
-# }
+DJOSER = {
+    "USER_ID_FIELD": "username",  # We use username for login
+}
 
-# DAY = 1  # days
+DAY = 1  # days
 # SIMPLE_JWT = {
 #     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
 #     'REFRESH_TOKEN_LIFETIME': timedelta(days=DAY),
