@@ -12,7 +12,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('furniture/', include('furniture.urls')),
+    path('api/furniture/', include('furniture.urls')),
 
     path('api/users/', include('users.urls')),
     # path('api/token/create/', TokenObtainPairView.as_view(),

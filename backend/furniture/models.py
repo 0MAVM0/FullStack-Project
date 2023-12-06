@@ -9,8 +9,8 @@ class Furniture(models.Model):
     price = models.IntegerField()
     color = models.CharField(max_length=100)
     image = models.ImageField(
-        upload_to='media/furniture/',
-        default='media/furniture/default.jpg'
+        upload_to='furniture/',
+        default='furniture/default.jpg'
     )
     category = models.CharField(max_length=100)
     quantity = models.IntegerField()
@@ -18,7 +18,7 @@ class Furniture(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        super(Furniture, self).save(*args, **kwargs)
 
         img = Image.open(self.image.path)
         if img.height > 600 or img.width > 600:
