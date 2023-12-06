@@ -1,3 +1,5 @@
+import os
+from PIL import Image
 from django.db import models
 
 
@@ -7,10 +9,25 @@ class Furniture(models.Model):
     price = models.IntegerField()
     color = models.CharField(max_length=100)
     image = models.ImageField(
-        upload_to='media/furniture/', 
+        upload_to='media/furniture/',
         default='media/furniture/default.jpg'
     )
     category = models.CharField(max_length=100)
     quantity = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+        if img.height > 600 or img.width > 600:
+            output_size = (600, 600)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+    
+    def delete(self, *args, **kwargs):
+        image_url = self.image.url
+        if image_url !='/media/furniture/default.pnf':
+            os.remove(self.image.path)
+        super().delete(*args, **kwargs)
