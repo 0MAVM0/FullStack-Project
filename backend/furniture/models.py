@@ -28,6 +28,6 @@ class Furniture(models.Model):
     
     def delete(self, *args, **kwargs):
         image_url = self.image.url
-        if image_url !='/media/furniture/default.pnf':
+        if image_url !='/media/furniture/default.png':
             os.remove(self.image.path)
         super().delete(*args, **kwargs)
