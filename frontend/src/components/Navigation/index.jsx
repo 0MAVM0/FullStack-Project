@@ -19,13 +19,13 @@ export default function Navigation() {
                 <nav className='main-navbar'>
                     <div className="upper-nav">
                         <div className="upper-left-nav">
-                            <a href="mailto:alisherxujanov163@gmail.com">
+                            <a href="mailto:ediconpts9@gmail.com">
                                 <img src={emailVector} width="15" height="15" alt="" />
-                                alisherxujanov163@gmail.com
+                                ediconpts9@gmail.com
                             </a>
                             <span>
                                 <img src={phoneVector} width="15" height="15" alt="" />
-                                (+99833) 4747477
+                                (+998) (98) 260-87-88
                             </span>
                         </div>
                         <div className="upper-right-nav">
