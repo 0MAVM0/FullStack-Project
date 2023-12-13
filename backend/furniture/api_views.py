@@ -1,13 +1,13 @@
-from backend.usecases import *
 from rest_framework.status import *
 from rest_framework.response import Response
 
 from .models import *
-from .serializers import *
+from .usecases import *
+from .serializers import FurnitureSerializer
 
 
 class FurnitureList(NoAuthApiView):
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         furniture = Furniture.objects.all()
         serializer = FurnitureSerializer(furniture, many=True)
         return Response(serializer.data, status=HTTP_200_OK)
