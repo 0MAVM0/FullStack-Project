@@ -1,27 +1,43 @@
 import './style.scss'
+import { useState, useEffect } from 'react'
 import { getFurnitures } from '../../conf/common'
+import Item from './item.jsx'
 
 function Products() {
-
-    async function fetchFurnitures() {
-        let r = await getFurnitures()
-        console.log(r)
-    }
-    const btn_style = {
-        padding: "10px 30px",
-        width: '200px',
-    }
+    const [furnitures, setFurnitures] = useState([])
+    useEffect(() => {
+        getFurnitures().then((data) => {
+            setFurnitures(data)
+        })
+    }, [])
 
     return (
-        <div id="product-page">
-            <h1>Products</h1>
-            <button style={btn_style} className='success-btn'
-                onClick={fetchFurnitures}
-            >
-                Get items
-            </button>
-        </div>
-    );
-}
+        <div id="product-page"><h1>Latest Products</h1>
 
+        <div className="new-arrivals">
+            <ul>
+                <li>New Arrival</li>
+                <li>Best Seller</li>
+                <li>Featured</li>
+                <li>Special Offer</li>
+            </ul>
+        </div>
+
+        <div className="items">
+            {
+                furnitures && furnitures.map((furniture, index) => {
+                    return (
+                        <Item 
+                            key={index}
+                            price={furniture.price}
+                            image={furniture.image}
+                            name={furniture.name}
+                        />
+                    )
+                })
+            }
+        </div>
+    </div>
+);
+}
 export default Products;
