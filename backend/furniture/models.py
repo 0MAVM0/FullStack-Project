@@ -1,14 +1,19 @@
 import os
 from PIL import Image
 from django.db import models
+from django.contrib.auth.models import User
 
+
+class Wishlist(models.Model):
+    furnitureId = models.ManyToManyField('Furniture', null=True, blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Furniture(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     price = models.IntegerField()
     color = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='furniture/', 
+    image = models.ImageField(upload_to='furniture/',
                               default='furniture/default.jpg')
     category = models.CharField(max_length=100)
     quantity = models.IntegerField()

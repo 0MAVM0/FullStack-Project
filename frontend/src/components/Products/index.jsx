@@ -12,32 +12,34 @@ function Products() {
     }, [])
 
     return (
-        <div id="product-page"><h1>Latest Products</h1>
+        <div id="product-page">
+            <h1>Latest Products</h1>
 
-        <div className="new-arrivals">
-            <ul>
-                <li>New Arrival</li>
-                <li>Best Seller</li>
-                <li>Featured</li>
-                <li>Special Offer</li>
-            </ul>
-        </div>
+            <div className="new-arrivals">
+                <ul>
+                    <li>New Arrival</li>
+                    <li>Best Seller</li>
+                    <li>Featured</li>
+                    <li>Special Offer</li>
+                </ul>
+            </div>
 
-        <div className="items">
-            {
-                furnitures && furnitures.map((furniture, index) => {
-                    return (
-                        <Item 
-                            key={index}
-                            price={furniture.price}
-                            image={furniture.image}
-                            name={furniture.name}
-                        />
-                    )
-                })
-            }
+            <div className="items">
+                {
+                    furnitures && furnitures.map((furniture, index) => {
+                        return (
+                            <Item 
+                                key={index}
+                                price={furniture.price}
+                                image={furniture.image}
+                                name={furniture.name}
+                            />
+                        )
+                    })
+                }
+            </div>
         </div>
-    </div>
-);
+    );
 }
+
 export default Products;

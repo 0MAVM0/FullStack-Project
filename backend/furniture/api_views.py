@@ -39,3 +39,11 @@ class FurnitureDetails(NoAuthApiView):
         furniture = Furniture.objects.get(pk=pk)
         furniture.delete()
         return Response(status=HTTP_204_NO_CONTENT)
+
+class WishlistApiView(NoAuthApiView):
+
+    def get(self, request):
+        wishlist = get_wishlist(request)
+        furnitures = wishlist.furnitures.all()
+        seralizer = FurnitureSerializer(furnitures, many=True)
+        return Response(seralizer.data, status=HTTP_200_OK)
