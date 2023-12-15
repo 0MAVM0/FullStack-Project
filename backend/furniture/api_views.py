@@ -43,7 +43,8 @@ class FurnitureDetails(NoAuthApiView):
 class WishlistApiView(NoAuthApiView):
 
     def get(self, request):
-        wishlist = get_wishlist(request)
-        furnitures = wishlist.furnitures.all()
+        furnitures = []
+        if wishlist := get_wishlist(request):
+            furnitures = wishlist.furnitures.all()
         seralizer = FurnitureSerializer(furnitures, many=True)
         return Response(seralizer.data, status=HTTP_200_OK)
