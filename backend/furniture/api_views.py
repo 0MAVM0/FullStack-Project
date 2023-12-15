@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 from .models import *
 from .usecases import *
-from .serializers import FurnitureSerializer
+from .serializers import *
 
 
 class FurnitureList(NoAuthApiView):
@@ -46,5 +46,15 @@ class WishlistApiView(NoAuthApiView):
         furnitures = []
         if wishlist := get_wishlist(request):
             furnitures = wishlist.furnitures.all()
-        seralizer = FurnitureSerializer(furnitures, many=True)
+        seralizer = FurnitureSerializerForWishlist(furnitures, many=True)
         return Response(seralizer.data, status=HTTP_200_OK)
+
+
+    def post(self, request):
+        furniture_id = request.data.get("furniture_id")
+        if delete := request.data.get("delete_furniture"):
+            del_furniture_from_wishlist(request, furniture_id)
+        else:
+            set_wishlist(request, furniture_id)
+
+        return Response(status=HTTP_200_OK)
