@@ -11,7 +11,6 @@ class FurnitureList(NoAuthApiView):
         furniture = Furniture.objects.all()
         serializer = FurnitureSerializer(furniture, many=True)
         return Response(serializer.data, status=HTTP_200_OK)
-
     def post(self, request):
         serializer = FurnitureSerializer(data=request.data)
         if serializer.is_valid():
@@ -24,8 +23,6 @@ class FurnitureDetails(NoAuthApiView):
         furniture = Furniture.objects.get(pk=pk)
         serializer = FurnitureSerializer(furniture)
         return Response(serializer.data, status=HTTP_200_OK)
-
-
     def put(self, request, pk):
         furniture = Furniture.objects.get(pk=pk)
         serializer = FurnitureSerializer(furniture, data=request.data)
@@ -33,12 +30,11 @@ class FurnitureDetails(NoAuthApiView):
             serializer.save()
             return Response(serializer.data, status=HTTP_200_OK)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
-
-
     def delete(self, request, pk):
         furniture = Furniture.objects.get(pk=pk)
         furniture.delete()
         return Response(status=HTTP_204_NO_CONTENT)
+
 
 class WishlistApiView(NoAuthApiView):
 
@@ -46,15 +42,13 @@ class WishlistApiView(NoAuthApiView):
         furnitures = []
         if wishlist := get_wishlist(request):
             furnitures = wishlist.furnitures.all()
-        seralizer = FurnitureSerializerForWishlist(furnitures, many=True)
-        return Response(seralizer.data, status=HTTP_200_OK)
-
-
+        serializer = FurnitureSerializerForWishlist(furnitures, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
+    
     def post(self, request):
-        furniture_id = request.data.get("furniture_id")
-        if delete := request.data.get("delete_furniture"):
+        furniture_id = request.data.get('furniture_id')
+        if delete := request.data.get('delete_furniture'):
             del_furniture_from_wishlist(request, furniture_id)
         else:
             set_wishlist(request, furniture_id)
-
         return Response(status=HTTP_200_OK)

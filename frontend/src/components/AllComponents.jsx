@@ -6,10 +6,12 @@ import Home from '../components/Home'
 import AuthControl from './AuthControl'
 import Profile from './Profile'
 import Products from './Products'
+import Wishlist from './Wishlist'
 
 const AuthHome = AuthControl(Home)
 const AuthProfile = AuthControl(Profile)
 const AuthProducts = AuthControl(Products)
+const AuthWishlist = AuthControl(Wishlist)
 
 
 export default function AllComponents() {
@@ -21,6 +23,7 @@ export default function AllComponents() {
         <Route path='/auth' element={<Auth />} />
         <Route path='/profile' element={<Profile />} /> {/* AuthProfile */}
         <Route path='/products' element={<Products />} /> {/* AuthProducts */}
+        <Route path='/wishlist' element={<Wishlist />} /> {/* AuthWishlist */}
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>

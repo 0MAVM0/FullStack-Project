@@ -4,8 +4,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Wishlist(models.Model):
-    furnitureId = models.ManyToManyField('Furniture', null=True, blank=True)
+class WishList(models.Model):
+    furnitures = models.ManyToManyField('Furniture', null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Furniture(models.Model):
@@ -22,7 +22,7 @@ class Furniture(models.Model):
 
     def save(self, *args, **kwargs):
         super(Furniture, self).save(*args, **kwargs)
-        
+
         img = Image.open(self.image.path)
         if img.height > 600 or img.width > 600:
             output_size = (600, 600)
