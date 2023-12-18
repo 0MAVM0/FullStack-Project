@@ -1,6 +1,7 @@
 import "./style.scss"
 import { useEffect, useContext } from 'react'
 import { axiosCall } from '../../conf/axios'
+import { context } from "../../conf/store"
 
 function Wishlist(props) {
     const state = useContext(context)
