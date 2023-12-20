@@ -33,6 +33,7 @@ function Products() {
                                 price={furniture.price}
                                 image={furniture.image}
                                 name={furniture.name}
+                                itemID={furniture.id}
                             />
                         )
                     })
