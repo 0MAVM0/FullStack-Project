@@ -1,6 +1,5 @@
-from rest_framework import serializers
-
 from .models import Furniture
+from rest_framework import serializers
 
 
 class FurnitureSerializer(serializers.ModelSerializer):

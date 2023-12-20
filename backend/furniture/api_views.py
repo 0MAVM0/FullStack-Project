@@ -11,6 +11,7 @@ class FurnitureList(NoAuthApiView):
         furniture = Furniture.objects.all()
         serializer = FurnitureSerializerForWishlist(furniture, many=True)
         return Response(serializer.data, status=HTTP_200_OK)
+
     def post(self, request):
         serializer = FurnitureSerializer(data=request.data)
         if serializer.is_valid():
@@ -19,10 +20,12 @@ class FurnitureList(NoAuthApiView):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 class FurnitureDetails(NoAuthApiView):
+
     def get(self, request, pk):
         furniture = Furniture.objects.get(pk=pk)
         serializer = FurnitureSerializer(furniture)
         return Response(serializer.data, status=HTTP_200_OK)
+
     def put(self, request, pk):
         furniture = Furniture.objects.get(pk=pk)
         serializer = FurnitureSerializer(furniture, data=request.data)
@@ -30,6 +33,7 @@ class FurnitureDetails(NoAuthApiView):
             serializer.save()
             return Response(serializer.data, status=HTTP_200_OK)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
     def delete(self, request, pk):
         furniture = Furniture.objects.get(pk=pk)
         furniture.delete()
@@ -44,7 +48,7 @@ class WishlistApiView(NoAuthApiView):
             furnitures = wishlist.furnitures.all()
         serializer = FurnitureSerializerForWishlist(furnitures, many=True)
         return Response(serializer.data, status=HTTP_200_OK)
-    
+
     def post(self, request):
         print("=============================================")
         print("=============================================")

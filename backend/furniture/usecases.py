@@ -7,6 +7,7 @@ from .models import WishList, Furniture
 class NoAuthApiView(APIView):
     permission_classes = [AllowAny]
 
+
 class AuthApiView(NoAuthApiView):
     permission_classes = [IsAuthenticated]
 
@@ -29,15 +30,9 @@ def set_wishlist(request, furniture_id:int):
         wishlist.furnitures.add(furniture)
     return
 
-
-
 def del_furniture_from_wishlist(request, furniture_id:int):
     if request.user.is_authenticated:
         if wishlist := WishList.objects.filter(owner=request.user)[0]:
             furniture = Furniture.objects.get(pk=furniture_id)
             wishlist.furnitures.remove(furniture)
     return
-
-def get_wishlist(request):
-    wishlist_objs = WishList.objects.filter(owner=request.user)
-    return wishlist_objs
