@@ -25,7 +25,7 @@ function Item(props) {
         <div className="product-item-wrapper">
             <div className="hover-info">
                 <span><img src={Cart} alt="Cart" /></span>
-                <span onClick={addToWishlist} ><img src={Wishlist} alt="WishList" /></span>
+                <span onClick={addToWishlist} ><img src={Wishlist} alt="Wishlist" /></span>
                 <span><img src={ZoomIn} alt="ZoomIn" /></span>
             </div>
             <img

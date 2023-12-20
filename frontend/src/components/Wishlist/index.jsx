@@ -48,7 +48,7 @@ function Wishlist(props) {
                                         <p>Description: {item.description}</p>
                                         <p>Category: {item.category}</p>
 
-                                        <span onClick={delFromWishlist} className="del-item">
+                                        <span onClick={""} className="del-item">
                                             &times;
                                         </span>
                                     </div>
