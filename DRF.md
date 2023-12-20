@@ -669,6 +669,8 @@ But, this does NOT mean that client has to login again. Client can use refresh t
 ---
 ---
 
+
+### Customizing JWT
 If we want to some extra validation in the token, we can do it like this:
 ```python
 # views.py
@@ -870,8 +872,3 @@ when we visit it again it loads faster because it is cached.
 ```
 
 [This is the link that we can visit for filtering](https://www.django-rest-framework.org/api-guide/caching/)
-
-
-
-
-
